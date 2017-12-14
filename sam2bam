@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+samFile=$1
+bamFile=$1.bam
+
+#sam to bam
+samtools view -b -S -@ 16 -m 4G $samFile > $bamFile
+
+#sort bam
+samtools sort -@ 16 -m 4G $bamFile -o $bamFile
+
+#index bam
+samtools index $bamFile
